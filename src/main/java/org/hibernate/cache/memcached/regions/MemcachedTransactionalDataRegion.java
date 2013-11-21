@@ -18,7 +18,6 @@ import java.util.Properties;
 public class MemcachedTransactionalDataRegion extends MemcachedDataRegion implements TransactionalDataRegion {
 
     protected final Settings settings;
-
     protected final CacheDataDescription metadata;
 
     public MemcachedTransactionalDataRegion(MemcachedAccessStrategyFactory accessStrategyFactory,
@@ -36,6 +35,10 @@ public class MemcachedTransactionalDataRegion extends MemcachedDataRegion implem
     @Override
     public boolean isTransactionAware() {
         return false;
+    }
+
+    public Settings getSettings() {
+        return settings;
     }
 
     @Override

@@ -5,11 +5,6 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import net.rubyeye.xmemcached.MemcachedClient;
 import org.hibernate.cache.CacheException;
-import org.hibernate.cache.memcached.serializer.BinaryMemcachedSerializer;
-import org.hibernate.cache.memcached.serializer.MemcachedSerializer;
-import org.hibernate.cache.spi.CacheKey;
-
-import java.nio.charset.StandardCharsets;
 
 /**
  * Hibernate-Memcached client class for Memcached Server using Xmemcached
@@ -173,18 +168,12 @@ public class HibernateMemcached {
         }
     }
 
-
-    private static final MemcachedSerializer<Object> keySerializer = new BinaryMemcachedSerializer<>();
-
     private static String keyToString(Object key) {
-        // TODO: Hibernate CacheKey 의 Id 값을 Key 값으로 쓰자!!!
-        if (key instanceof CacheKey) {
-            CacheKey cacheKey = (CacheKey) key;
-            return cacheKey.toString(); // cacheKey.getEntityOrRoleName() + "#" + cacheKey.getKey();
-        } else if (key instanceof String) {
+        if (key instanceof String) {
             return (String) key;
         } else {
-            return new String(keySerializer.serialize(key), StandardCharsets.UTF_8);
+            // NOTE: MemCached Key size is limited 250 !!!
+            return (key != null) ? key.toString() : "";
         }
     }
 }

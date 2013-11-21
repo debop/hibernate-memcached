@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { HibernateMemcachedConfiguration.class })
-public class AbstractHibernateTest {
+public abstract class AbstractHibernateTest {
 
     @Autowired protected SessionFactory sessionFactory;
 }

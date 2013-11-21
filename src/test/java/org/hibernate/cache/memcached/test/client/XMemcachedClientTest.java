@@ -1,4 +1,4 @@
-package org.hibernate.cache.memcached.client;
+package org.hibernate.cache.memcached.test.client;
 
 import lombok.extern.slf4j.Slf4j;
 import net.rubyeye.xmemcached.*;
@@ -15,7 +15,7 @@ import java.util.Map;
 import static org.fest.assertions.Assertions.assertThat;
 
 /**
- * org.hibernate.cache.memcached.client.XMemcachedClientTest
+ * XMemcachedClientTest
  *
  * @author 배성혁 sunghyouk.bae@gmail.com
  * @since 2013. 11. 20. 오전 9:32
@@ -191,7 +191,7 @@ public class XMemcachedClientTest {
             KeyIterator keyIter = client.getKeyIterator(addr);
             while (keyIter.hasNext()) {
                 final String key = keyIter.next();
-                log.debug("key=[{}]");
+                XMemcachedClientTest.log.debug("key=[{}]");
             }
         }
     }

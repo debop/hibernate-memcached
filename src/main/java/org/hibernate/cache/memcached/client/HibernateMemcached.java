@@ -20,6 +20,8 @@ import java.nio.charset.StandardCharsets;
 @Slf4j
 public class HibernateMemcached {
 
+    public static final String DEFAULT_REGION_NAME = "hibernate";
+
     @Getter
     private final MemcachedClient client;
 
@@ -179,6 +181,8 @@ public class HibernateMemcached {
         if (key instanceof CacheKey) {
             CacheKey cacheKey = (CacheKey) key;
             return cacheKey.toString(); // cacheKey.getEntityOrRoleName() + "#" + cacheKey.getKey();
+        } else if (key instanceof String) {
+            return (String) key;
         } else {
             return new String(keySerializer.serialize(key), StandardCharsets.UTF_8);
         }

@@ -16,7 +16,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * @author 배성혁 sunghyouk.bae@gmail.com
  * @since 2013. 11. 21. 오후 4:33
  */
-public class AbstractReadWriteRedisAccessStrategy<T extends MemcachedTransactionalDataRegion> extends AbstractMemcachedAccessStrategy<T> {
+public class AbstractReadWriteMemcachedAccessStrategy<T extends MemcachedTransactionalDataRegion> extends AbstractMemcachedAccessStrategy<T> {
 
     private final UUID uuid = UUID.randomUUID();
     private final AtomicLong nextLockId = new AtomicLong();
@@ -25,7 +25,7 @@ public class AbstractReadWriteRedisAccessStrategy<T extends MemcachedTransaction
     /**
      * Creates a read/write cache access strategy around the given cache region.
      */
-    public AbstractReadWriteRedisAccessStrategy(T region, Settings settings) {
+    public AbstractReadWriteMemcachedAccessStrategy(T region, Settings settings) {
         super(region, settings);
         this.versionComparator = region.getCacheDataDescription().getVersionComparator();
     }

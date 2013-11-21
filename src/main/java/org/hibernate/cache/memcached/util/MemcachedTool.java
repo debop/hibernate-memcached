@@ -21,6 +21,7 @@ import java.util.Properties;
 @Slf4j
 public final class MemcachedTool {
 
+    public static final String MEMCACHED_PROPERTY_FILE = "hibernate-memcached.properties";
     public static final String EXPIRY_PROPERTY_PREFIX = "memcached.expiryInSeconds.";
     private static Properties cacheProperties = null;
 
@@ -39,13 +40,14 @@ public final class MemcachedTool {
         try {
 
             String address = props.getProperty("memcached.address", "localhost:11211");
+            int poolsize = Integer.decode(props.getProperty("memcached.poolsize", "5"));
             log.info("create MemcachedClient. address=[{}]", address);
 
             MemcachedClientBuilder builder = new XMemcachedClientBuilder(AddrUtil.getAddresses(address));
-
-            builder.setConnectionPoolSize(5);
+            builder.setConnectionPoolSize(poolsize);
             builder.setCommandFactory(new BinaryCommandFactory()); // use binary protocol for cas;
             return builder.build();
+
         } catch (Exception e) {
             log.error("Fail to create MemcachedClient instance.", e);
             throw new RuntimeException(e);
@@ -55,7 +57,7 @@ public final class MemcachedTool {
 
     private static Properties loadCacheProperties(final Properties props) {
         Properties cacheProps = new Properties();
-        String cachePath = props.getProperty(Environment.CACHE_PROVIDER_CONFIG, "hibernate-memcached.properties");
+        String cachePath = props.getProperty(Environment.CACHE_PROVIDER_CONFIG, MemcachedTool.MEMCACHED_PROPERTY_FILE);
         try {
             log.info("Loading cache properties... path=[{}]", cachePath);
             InputStream is = MemcachedTool.class.getClassLoader().getResourceAsStream(cachePath);
@@ -81,7 +83,7 @@ public final class MemcachedTool {
     }
 
     /**
-     * retrieve property value in hibernate-redis.properties
+     * retrieve property value in hibernate-memcached.properties
      *
      * @param name         property key
      * @param defaultValue default value

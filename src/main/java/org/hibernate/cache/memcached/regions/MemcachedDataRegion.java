@@ -8,8 +8,8 @@ import org.hibernate.cache.memcached.strategy.MemcachedAccessStrategyFactory;
 import org.hibernate.cache.memcached.util.MemcachedTool;
 import org.hibernate.cache.memcached.util.Timestamper;
 import org.hibernate.cache.spi.Region;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
@@ -79,12 +79,12 @@ abstract public class MemcachedDataRegion implements Region {
      */
     @Override
     public long getSizeInMemory() {
-        throw new NotImplementedException();
+        return -1;
     }
 
     @Override
     public long getElementCountInMemory() {
-        throw new NotImplementedException();
+        return -1;
     }
 
     @Override
@@ -94,7 +94,7 @@ abstract public class MemcachedDataRegion implements Region {
 
     @Override
     public Map toMap() {
-        throw new NotImplementedException();
+        return new HashMap();
     }
 
     @Override

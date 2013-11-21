@@ -12,6 +12,8 @@ import org.hibernate.persister.entity.EntityPersister;
  */
 public final class HibernateCacheUtil {
 
+    private HibernateCacheUtil() {}
+
     public static String getRegionName(SessionFactory sessionFactory, Class entityClass) {
         EntityPersister p = ((SessionFactoryImpl) sessionFactory).getEntityPersister(entityClass.getName());
         return p.hasCache()

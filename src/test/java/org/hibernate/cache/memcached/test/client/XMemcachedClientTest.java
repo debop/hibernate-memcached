@@ -52,7 +52,7 @@ public class XMemcachedClientTest {
 
     @Test
     public void setTest() throws Exception {
-        client.deleteWithNoReply("hello");
+        client.delete("hello");
 
         assertThat(client.set("hello", 0, "world")).isTrue();
         assertThat(client.add("hello", 0, "dennis")).isFalse();

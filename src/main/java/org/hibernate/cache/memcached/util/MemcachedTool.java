@@ -40,11 +40,12 @@ public final class MemcachedTool {
         try {
 
             String address = props.getProperty("memcached.address", "localhost:11211");
-            int poolsize = Integer.decode(props.getProperty("memcached.poolsize", "5"));
+            int poolsize = Integer.decode(props.getProperty("memcached.poolsize", "0"));
             log.info("create MemcachedClient. address=[{}]", address);
 
             MemcachedClientBuilder builder = new XMemcachedClientBuilder(AddrUtil.getAddresses(address));
-            builder.setConnectionPoolSize(poolsize);
+            if (poolsize > 0)
+                builder.setConnectionPoolSize(poolsize);
             builder.setCommandFactory(new BinaryCommandFactory()); // use binary protocol for cas;
             return builder.build();
 

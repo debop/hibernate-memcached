@@ -64,8 +64,12 @@ public class HibernateMemcachedTest {
         client.set("region1", "regionKey1", "value1");
         assertThat(client.get("region1", "regionKey1")).isEqualTo("value1");
 
+        Thread.sleep(10);
+
         client.set("region2", "regionKey2", "value2");
         assertThat(client.get("region2", "regionKey2")).isEqualTo("value2");
+
+        Thread.sleep(10);
 
         assertThat(client.get("region1", "regionKey2")).isNull();
         assertThat(client.get("region2", "regionKey1")).isNull();

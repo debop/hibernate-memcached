@@ -9,8 +9,8 @@
 		</encoder>
 	</appender>
 
-	<logger name="org.hibernate.cache.memcached" level="TRACE"/>
-	<root level="INFO">
+    <logger name="org.hibernate.cache.memcached" level="DEBUG"/>
+    <root level="INFO">
 		<appender-ref ref="console"/>
 	</root>
 

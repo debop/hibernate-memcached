@@ -46,7 +46,7 @@ public class HibernateMemcachedConfiguration {
 
         props.put(Environment.FORMAT_SQL, "true");
         props.put(Environment.HBM2DDL_AUTO, "create-drop");
-        props.put(Environment.SHOW_SQL, "true");
+        props.put(Environment.SHOW_SQL, "false");
 
         props.put(Environment.POOL_SIZE, 30);
 

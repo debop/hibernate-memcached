@@ -27,6 +27,12 @@ public final class MemcachedTool {
 
     private MemcachedTool() {}
 
+    /**
+     * Create {@link HibernateMemcached} instance.
+     *
+     * @param props hibernate properties
+     * @return {@link HibernateMemcached} instance.
+     */
     public static HibernateMemcached createHibernateMemcached(Properties props) {
         log.info("create JedisClient.");
         cacheProperties = loadCacheProperties(props);
@@ -36,6 +42,12 @@ public final class MemcachedTool {
         return new HibernateMemcached(client, expiryInSeconds);
     }
 
+    /**
+     * Create {@link MemcachedClient} instance.
+     *
+     * @param props hibernate 2nd cache properties
+     * @return {@link MemcachedClient} instance.
+     */
     public static MemcachedClient createMemcachedClient(Properties props) {
         try {
 

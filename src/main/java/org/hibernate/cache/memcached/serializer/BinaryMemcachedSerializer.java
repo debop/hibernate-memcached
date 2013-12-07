@@ -9,7 +9,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 /**
- * org.hibernate.cache.memcached.serializer.BinaryMemcachedSerializer
+ * Binary Object Serializer
  *
  * @author 배성혁 sunghyouk.bae@gmail.com
  * @since 2013. 11. 21. 오후 3:45
@@ -17,6 +17,12 @@ import java.io.ObjectOutputStream;
 @Slf4j
 public class BinaryMemcachedSerializer<T> implements MemcachedSerializer<T> {
 
+    /**
+     * Serialize object
+     *
+     * @param graph object to serialize
+     * @return serialized data
+     */
     @Override
     public byte[] serialize(final T graph) {
         if (graph == null) return EMPTY_BYTES;
@@ -35,6 +41,12 @@ public class BinaryMemcachedSerializer<T> implements MemcachedSerializer<T> {
         }
     }
 
+    /**
+     * Deserialize serialized data to original object
+     *
+     * @param bytes serialized data
+     * @return original object
+     */
     @Override
     @SuppressWarnings("unchecked")
     public T deserialize(final byte[] bytes) {

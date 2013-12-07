@@ -168,6 +168,12 @@ public class HibernateMemcached {
         }
     }
 
+    /**
+     * convert cache key object to String
+     *
+     * @param key cache key
+     * @return string
+     */
     private static String keyToString(Object key) {
         if (key instanceof String) {
             return (String) key;

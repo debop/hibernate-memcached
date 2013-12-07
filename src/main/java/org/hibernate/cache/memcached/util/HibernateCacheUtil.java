@@ -14,6 +14,13 @@ public final class HibernateCacheUtil {
 
     private HibernateCacheUtil() {}
 
+    /**
+     * Retrieve region name for the specified entity class.
+     *
+     * @param sessionFactory Hibernate session factory.
+     * @param entityClass    entity class.
+     * @return region name.
+     */
     public static String getRegionName(SessionFactory sessionFactory, Class entityClass) {
         EntityPersister p = ((SessionFactoryImpl) sessionFactory).getEntityPersister(entityClass.getName());
         return p.hasCache()

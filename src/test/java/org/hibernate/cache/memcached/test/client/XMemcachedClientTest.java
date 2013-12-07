@@ -28,7 +28,7 @@ public class XMemcachedClientTest {
     @Before
     public void before() throws Exception {
         MemcachedClientBuilder builder = new XMemcachedClientBuilder(AddrUtil.getAddresses("localhost:11211"));
-        builder.setConnectionPoolSize(5);
+        // builder.setConnectionPoolSize(5);
         builder.setCommandFactory(new BinaryCommandFactory()); // use binary protocol for cas;
         client = builder.build();
         client.flushAll();

@@ -6,9 +6,9 @@
 
 	<groupId>org.hibernate</groupId>
 	<artifactId>hibernate-memcached</artifactId>
-	<version>1.1.0-SNAPSHOT</version>
+    <version>1.1.0.RELEASE</version>
 
-	<name>Hibernate-Memcached</name>
+    <name>Hibernate-Memcached</name>
 
 
 	<properties>

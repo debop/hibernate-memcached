@@ -28,7 +28,7 @@ public class XMemcachedClientTest {
     @Before
     public void before() throws Exception {
         MemcachedClientBuilder builder = new XMemcachedClientBuilder(AddrUtil.getAddresses("localhost:11211"));
-        builder.setConnectionPoolSize(5);
+        // builder.setConnectionPoolSize(5);
         builder.setCommandFactory(new BinaryCommandFactory()); // use binary protocol for cas;
         client = builder.build();
         client.flushAll();
@@ -73,11 +73,11 @@ public class XMemcachedClientTest {
      */
     @Test
     public void touch() throws Exception {
-        client.set("key", 1, "Value");  // 1 seconds
-        final String value = client.getAndTouch("key", 2); // 2 seconds
+        client.set("touchKey", 1, "Value");  // 1 seconds
+        final String value = client.getAndTouch("touchKey", 2); // 2 seconds
         assertThat(value).isEqualTo("Value");
-        Thread.sleep(2100);
-        assertThat(client.get("key")).isNull();
+        Thread.sleep(2200);
+        assertThat(client.get("touchKey")).isNull();
     }
 
     /**
